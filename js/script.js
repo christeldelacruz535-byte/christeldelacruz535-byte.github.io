@@ -10,7 +10,7 @@ async function fetchGitHubRepos() {
         repoList.innerHTML = '';
 
         if (repos.length === 0) {
-            repoList.innerHTML = '<li>No public repositories yet.</li>';
+            repoList.innerHTML = '<li>📭 No public repositories yet.</li>';
             return;
         }
 
@@ -24,7 +24,7 @@ async function fetchGitHubRepos() {
         });
     } catch (error) {
         document.getElementById('githubRepos').innerHTML = 
-            '<li>⚠️ Could not load repositories. Check your username.</li>';
+            '<li>⚠️ Could not load repositories. Check your internet connection.</li>';
     }
 }
 
@@ -41,6 +41,7 @@ contactForm.addEventListener('submit', function(e) {
     
     setTimeout(() => {
         statusMsg.textContent = '';
+        statusMsg.className = '';
     }, 5000);
 });
 
