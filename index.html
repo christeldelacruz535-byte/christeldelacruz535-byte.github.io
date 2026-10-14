@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christel Dela Cruz - My Student Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #ec4899;
+            --secondary: #be185d;
+            --accent: #f9a8d4;
+            --light: #fdf2f8;
+            --dark: #1f2937;
+            --shadow: 0 4px 12px rgba(236, 72, 153, 0.15);
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fef7fc;
+        }
+    
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+    
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 10rem 2rem 7rem;
+            margin-top: 0;
+        }
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-pic {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 6px solid white;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            background: white;
+            color: var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+    
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+    
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        #about p strong {
+            color: var(--secondary);
+        }
+    
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--accent);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.15);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+    
+        #skills .card {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            padding: 2.5rem 2rem;
+        }
+    
+        #githubRepos {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        #githubRepos li {
+            background: white;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            border-left: 4px solid var(--primary);
+        }
+
+        #githubRepos li:hover {
+            transform: translateX(5px);
+        }
+
+        #githubRepos a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #fbcfe8;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #status {
+            margin-top: 1rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .success { color: #16a34a; }
+        .error { color: #dc2626; }
+
+        #contact > p {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        #contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+    
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+    
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 9rem 1.5rem 5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .profile-pic {
+                width: 140px;
+                height: 140px;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h2>🌸 CDC</h2>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="profile-container">
+            <img src="image.jpeg" alt="Christel Dela Cruz" class="profile-pic">
+        </div>
+        <h1>Christel Dela Cruz</h1>
+        <h3>BSINTE Student — Networking Specialist</h3>
+        <a href="#projects" class="btn">View My Work </a>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hi! I'm Christel Dela Cruz, a dedicated student exploring the fascinating world of computer networking and information technology. I'm passionate about understanding how networks connect people and systems — from setting up local networks to configuring devices, troubleshooting connectivity issues, and ensuring secure, smooth data communication.
+        </p>
+        <p>
+          As a student, I believe that technology plays a very important role in connecting people, solving real-world problems, and making daily tasks easier and more efficient. That is why I am dedicated to learning not only inside the classroom but also through hands-on practice, projects, and self-study. I am especially interested in web development, networking, and IT support because these fields allow me to apply my technical knowledge in practical and meaningful ways.
+        </p>
+        <p><strong>🏫 School:</strong> Nueva Vizcaya State University</p>
+        <p><strong>📚 Course:</strong> Bachelor of Science in Information Technology</p>
+    </p>
+   <p><strong>✨ Motto :</strong> "Dream big , work hard , stay humble "
+    </p>
+        <p><strong>🎓💼 Goals:</strong> Finish my studies and work in the IT industry and keep learning new technologies throughout my career.</p>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="cards">
+            <div class="card">🌐 Networking Basics</div>
+            <div class="card">🔌 Cabling & Wiring</div>
+            <div class="card">🤝 Communication</div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>📄 Personal Portfolio</h3>
+                <p>A responsive website that introduces who I am and what I can do <p></p>
+
+        <h3 style="text-align:center; margin-top:3rem; color:var(--secondary);">📁 Latest GitHub Repositories</h3>
+        <ul id="githubRepos">
+            <li>Loading repositories...</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <form id="contactForm">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required placeholder="Enter your name">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="your email">
+
+            <label for="message">Your Message</label>
+            <textarea id="message" required placeholder="Write your message here..."></textarea>
+
+            <button type="submit" class="btn">Send Message ✉️</button>
+            <p id="status"></p>
+        </form>
+
+        <p>📧 Email: <a href="mailto:christeldelacruz535@gmail.com">christeldelacruz535@gmail.com</a></p>
+        <p>💻 GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Christel Dela Cruz. All rights reserved. 💖</p>
+        <a href="#home">Back to Top ↑</a>
+    </footer>
+
+    <script>
+        const GITHUB_USERNAME = 'yourusername';
+
+        async function fetchGitHubRepos() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=5`);
+                if (!response.ok) throw new Error('Failed to fetch');
+                
+                const repos = await response.json();
+                const repoList = document.getElementById('githubRepos');
+                repoList.innerHTML = '';
+
+                if (repos.length === 0) {
+                    repoList.innerHTML = '<li>No public repositories yet.</li>';
+                    return;
+                }
+
+                repos.forEach(repo => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong><a href="${repo.html_url}" target="_blank">${repo.name}</a></strong>
+                        ${repo.description ? `<br><small>${repo.description}</small>` : ''}
+                    `;
+                    repoList.appendChild(li);
+                });
+            } catch (error) {
+                document.getElementById('githubRepos').innerHTML = 
+                    '<li>⚠️ Could not load repositories. Check your username.</li>';
+            }
+        }
+    
+        const contactForm = document.getElementById('contactForm');
+        const statusMsg = document.getElementById('status');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            statusMsg.textContent = '✅ Message sent successfully! Thank you!';
+            statusMsg.className = 'success';
+            
+            this.reset();
+            
+            setTimeout(() => {
+                statusMsg.textContent = '';
+            }, 5000);
+        });
+    
+        window.addEventListener('load', fetchGitHubRepos);
+    </script>
+</body>
+</html>
